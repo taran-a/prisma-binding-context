@@ -54,7 +54,7 @@ export class Prisma extends Binding {
     )
 
     const before = () => {
-      sharedLink.setInnerLink(link, this.context)
+      sharedLink.setInnerLink(link, this.headerContext)
     }
 
     super({
@@ -65,6 +65,10 @@ export class Prisma extends Binding {
     })
 
     this.exists = this.buildExists()
+  }
+
+  private get headerContext() {
+    return this.context
   }
 
   private buildExists(): Exists {
