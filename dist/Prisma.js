@@ -55,7 +55,7 @@ var Prisma = /** @class */ (function (_super) {
         var link = link_1.makePrismaLink({ endpoint: endpoint, token: token, debug: debug });
         var remoteSchema = cache_1.getCachedRemoteSchema(endpoint, typeDefs, sharedLink, disableCache);
         var before = function () {
-            sharedLink.setInnerLink(link, _this.context);
+            sharedLink.setInnerLink(link);
         };
         _this = _super.call(this, {
             schema: remoteSchema,

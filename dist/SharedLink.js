@@ -12,17 +12,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var apollo_link_1 = require("apollo-link");
 var SharedLink = /** @class */ (function (_super) {
@@ -30,23 +19,14 @@ var SharedLink = /** @class */ (function (_super) {
     function SharedLink() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    SharedLink.prototype.setInnerLink = function (innerLink, context) {
+    SharedLink.prototype.setInnerLink = function (innerLink) {
         this.innerLink = innerLink;
-        this.context = context;
     };
     SharedLink.prototype.request = function (operation, forward) {
-        var _this = this;
         if (!this.innerLink) {
             throw new Error('No inner link set');
         }
-        if (this.context) {
-            operation.setContext(function (_a) {
-                var headers = _a.headers;
-                return ({
-                    headers: __assign({}, headers, _this.context),
-                });
-            });
-        }
+        console.log('SharedLink.ts', 'request', operation.getContext());
         return this.innerLink.request(operation, forward);
     };
     return SharedLink;

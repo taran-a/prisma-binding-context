@@ -8,11 +8,9 @@ import {
 
 export class SharedLink extends ApolloLink {
   private innerLink?: ApolloLink
-  private context?: Record<string, any>
 
-  setInnerLink(innerLink: ApolloLink, context: Record<string, any>) {
+  setInnerLink(innerLink: ApolloLink) {
     this.innerLink = innerLink
-    this.context = context
   }
 
   request(
@@ -23,14 +21,7 @@ export class SharedLink extends ApolloLink {
       throw new Error('No inner link set')
     }
 
-    if (this.context) {
-      operation.setContext(({ headers }) => ({
-        headers: {
-          ...headers,
-          ...this.context,
-        },
-      }))
-    }
+    console.log('SharedLink.ts', 'request', operation.getContext());
 
     return this.innerLink.request(operation, forward)
   }

@@ -11,7 +11,6 @@ const sharedLink = new SharedLink()
 
 export class Prisma extends Binding {
   exists: Exists
-  context: { [key: string]: string }
 
   constructor({
     typeDefs,
@@ -54,7 +53,7 @@ export class Prisma extends Binding {
     )
 
     const before = () => {
-      sharedLink.setInnerLink(link, this.headerContext)
+      sharedLink.setInnerLink(link)
     }
 
     super({
@@ -65,10 +64,6 @@ export class Prisma extends Binding {
     })
 
     this.exists = this.buildExists()
-  }
-
-  private get headerContext() {
-    return this.context
   }
 
   private buildExists(): Exists {

@@ -12,6 +12,7 @@ export interface BasePrismaOptions {
     secret?: string;
     debug?: boolean;
     disableCache?: boolean;
+    contextLink?: any;
 }
 export interface PrismaOptions extends BasePrismaOptions {
     typeDefs: string;
