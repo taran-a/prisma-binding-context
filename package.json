@@ -44,7 +44,7 @@
     "graphql-tools": "4.0.4",
     "http-link-dataloader": "^0.1.6",
     "jsonwebtoken": "8.4.0",
-    "subscriptions-transport-ws": "0.9.15",
+    "subscriptions-transport-ws": "https://github.com/taran-a/subscriptions-transport-ws.git",
     "yargs": "12.0.5"
   },
   "devDependencies": {
