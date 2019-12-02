@@ -25,7 +25,10 @@ function makePrismaLink(_a) {
             Authorization: 'Bearer ' + token,
           }
         : {},
-      lazy: true,
+      lazy: false,
+      connectionCallback: (error) => {
+        console.log('link.js', 'connectionCallback', error);
+      },
       inactivityTimeout: 30000,
     },
     webSocketImpl: ws,
