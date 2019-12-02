@@ -60,6 +60,10 @@ export function makePrismaLink({
   wsLink.subscriptionClient.onReconnected(() => {
     console.log(Date.now(), 'link.js', 'onReconnected')
   })
+  //@ts-ignore
+  wsLink.subscriptionClient.maxConnectTimeGenerator.duration = () =>
+      //@ts-ignore
+      wsLink.subscriptionClient.maxConnectTimeGenerator.max;
 
   // TODO fix link typings
   const backendLink = split(op => isSubscription(op), wsLink, httpLink as any)
